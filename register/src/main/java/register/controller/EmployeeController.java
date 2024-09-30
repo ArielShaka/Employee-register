@@ -1,6 +1,7 @@
 package register.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import register.model.Employee;
@@ -24,13 +25,13 @@ public class EmployeeController {
         boolean isAdded = employeeService.addEmployee(employee);
 
         if (isAdded) {
-            return ResponseEntity.ok("Employee added successfully");
+            return ResponseEntity.status(HttpStatus.CREATED).body("Employee added successfully");
         } else {
             return ResponseEntity.badRequest().body("Employee with this email already exists");
         }
     }
 
-    @DeleteMapping("/email")
+    @DeleteMapping("/{email}")
     public ResponseEntity<String> removeEmployee(@PathVariable String email) {
         boolean isRemoved = employeeService.removeEmployee(email);
 
