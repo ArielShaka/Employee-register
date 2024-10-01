@@ -23,23 +23,17 @@ public class EmployeeController {
     @PostMapping
     public ResponseEntity<String> addEmployee(@RequestBody Employee employee) {
         boolean isAdded = employeeService.addEmployee(employee);
-
-        if (isAdded) {
-            return ResponseEntity.status(HttpStatus.CREATED).body("Employee added successfully");
-        } else {
-            return ResponseEntity.badRequest().body("Employee with this email already exists");
-        }
+        return isAdded
+                ? ResponseEntity.status(HttpStatus.CREATED).body("Employee added successfully")
+                : ResponseEntity.badRequest().body("Employee with this email already exists");
     }
 
     @DeleteMapping("/{email}")
     public ResponseEntity<String> removeEmployee(@PathVariable String email) {
         boolean isRemoved = employeeService.removeEmployee(email);
-
-        if (isRemoved) {
-            return ResponseEntity.ok("Employee removed successfully");
-        } else {
-            return ResponseEntity.badRequest().body("Employee with this email does not exist");
-        }
+        return isRemoved
+                ? ResponseEntity.ok("Employee removed successfully")
+                : ResponseEntity.badRequest().body("Employee with this email does not exist");
     }
 
     @GetMapping

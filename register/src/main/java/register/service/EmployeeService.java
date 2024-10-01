@@ -14,19 +14,21 @@ public class EmployeeService {
     private final Map<String, Employee> employees = new ConcurrentHashMap<>();
 
     public boolean addEmployee(Employee employee) {
-        if(employees.containsKey(employee.getEmail())) {
+        String email = employee.getEmail();
+
+        if (email == null || email.trim().isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be null or empty");
+        }
+        if (employees.containsKey(email.trim().toLowerCase())) {
             return false;
         }
-            employees.put(employee.getEmail(), employee);
-            return true;
+        employees.put(email, employee);
+        return true;
     }
 
+
     public boolean removeEmployee(String email) {
-        if(!employees.containsKey(email)) {
-            return false;
-        }
-        employees.remove(email);
-        return true;
+        return employees.remove(email) != null;
     }
 
     public List<Employee> getAllEmployees() {

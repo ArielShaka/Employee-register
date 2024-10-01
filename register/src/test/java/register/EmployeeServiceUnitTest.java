@@ -36,10 +36,8 @@ class EmployeeServiceUnitTest {
     void addEmployee_ShouldReturnFalse_WhenEmployeeAlreadyExists() {
         Employee employeeToAdd = dummyEmployees.get(0);
 
-        // Add the employee first
         employeeService.addEmployee(employeeToAdd);
 
-        // Try adding again, should return false
         boolean result = employeeService.addEmployee(employeeToAdd);
 
         assertFalse(result);
@@ -49,10 +47,8 @@ class EmployeeServiceUnitTest {
     void removeEmployee_ShouldReturnTrue_WhenEmployeeIsRemoved() {
         Employee employeeToAdd = dummyEmployees.get(1);
 
-        // First, add the employee to be removed
         employeeService.addEmployee(employeeToAdd);
 
-        // Now remove it
         boolean result = employeeService.removeEmployee(employeeToAdd.getEmail());
 
         assertTrue(result);
