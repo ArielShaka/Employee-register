@@ -10,9 +10,9 @@ public class TestDataUtil {
 
     public static List<Employee> getDummyEmployees() {
         List<Employee> employees = new ArrayList<>();
-        employees.add(new Employee("john.doe@example.com", "John", "Doe"));
-        employees.add(new Employee("jane.smith@example.com", "Jane", "Smith"));
-        employees.add(new Employee("bob.johnson@example.com", "Bob", "Johnson"));
+        employees.add(new Employee("John", "Doe", "john.doe@example.com"));
+        employees.add(new Employee("Jane", "Smith", "jane.smith@example.com"));
+        employees.add(new Employee("Bob", "Johnson", "bob.johnson@example.com"));
         return employees;
     }
 

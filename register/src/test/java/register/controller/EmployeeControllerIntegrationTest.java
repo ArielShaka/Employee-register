@@ -50,7 +50,7 @@ class EmployeeControllerIntegrationTest {
         String email = TestDataUtil.getDummyEmployees().get(0).getEmail();
 
 
-        Employee employeeToAdd = new Employee(email, "John", "Doe");
+        Employee employeeToAdd = new Employee("John", "Doe", email);
         employeeService.addEmployee(employeeToAdd);
 
         mockMvc.perform(delete("/api/employees/" + email))
